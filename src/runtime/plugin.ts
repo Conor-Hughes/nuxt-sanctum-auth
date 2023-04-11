@@ -109,7 +109,7 @@ export default defineNuxtPlugin(async () => {
         body: JSON.stringify(data),
         headers: {
           Accept: 'application/json',
-          'X-XSRF-TOKEN': !config.token ? useCookie('XSRF-TOKEN').value : null,
+          [config.csrf.headerKey]: !config.token ? useCookie(config.csrf.cookieKey).value : null,
           'Authorization': config.token ? 'Bearer ' + auth.value.token : null
         } as HeadersInit
       })
